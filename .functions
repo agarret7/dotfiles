@@ -1,4 +1,10 @@
-# Credit: https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789
+mz () {
+    curl 'http://musicazoo.mit.edu/nlp' -H 'Content-Type: text/json' --data-binary "[{\"cmd\":\"do\",\"args\":{\"message\":\"$1\"}}]";
+    echo
+}
+
+# Credit for functions below: 
+# https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789
 
 # Create a new directory and enter it
 function mk() {
