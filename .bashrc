@@ -84,14 +84,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -105,7 +97,7 @@ if [ -f ~/.functions ]; then
     . ~/.functions
 fi
 
-# enable programmable completion features (you don't need to enable
+# Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
@@ -116,20 +108,25 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Mute that goddamned bell
+# Mute that goddamned terminal bell
 if [ -n "$DISPLAY" ]; then
   xset b off
 fi
 
-export PATH=$PATH:/opt/jdk/jdk1.8.0_121/bin
+# Environment Variables
 
-. /home/agarret7/programming/lib/torch/install/bin/torch-activate
+# PATH
+java_loc=/opt/jdk/jdk1.8.0_121/bin 
+cabal_loc=$HOME/.cabal/bin
+cuda_loc=/usr/local/cuda/bin
+pathadd $java_loc $cabal_loc $cuda_loc
 
+# LD_LIBRARY_PATH
+cuda_lib=/usr/local/cuda/lib64
+local_lib=/usr/local/lib
+ldlibrarypathadd $cuda_lib $local_lib
+
+# OTHER
 export JAVA_HOME=/opt/jdk/jdk1.8.0_121/
-export PATH=$HOME/.cabal/bin:$PATH
-
 export CUDA_PATH=/usr/local/cuda/
-
-export PATH=$PATH:/usr/local/cuda/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/lib
 export CPLUS_INCLUDE_PATH=/usr/local/cuda/include
