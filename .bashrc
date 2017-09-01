@@ -125,4 +125,11 @@ export PATH=$PATH:/opt/jdk/jdk1.8.0_121/bin
 
 . /home/agarret7/programming/lib/torch/install/bin/torch-activate
 
+export JAVA_HOME=/opt/jdk/jdk1.8.0_121/
 export PATH=$HOME/.cabal/bin:$PATH
+
+export CUDA_PATH=/usr/local/cuda/
+
+export PATH=$PATH:/usr/local/cuda/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/lib
+export CPLUS_INCLUDE_PATH=/usr/local/cuda/include

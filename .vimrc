@@ -39,7 +39,7 @@ set ignorecase
 set hlsearch
 
 " make the clipboard the system's
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " adds full mouse compatability
 if has("mouse")
@@ -117,3 +117,17 @@ let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
 
 " let g:syntastic_debug = 1
+
+" Some useful functions for selecting python version.
+function Py2()
+  let g:syntastic_python_python_exec = '/usr/local/bin/python2.7'
+endfunction
+
+function Py3()
+  let g:syntastic_python_python_exec = '/usr/local/bin/python3.6'
+endfunction
+
+call Py3()   " default to Py3 because I try to use it when possible
+
+" execute python program
+nmap <F5> :w <bar> :!python3.5 %<cr>

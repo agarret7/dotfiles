@@ -1,6 +1,85 @@
+#!/bin/bash
+
 mz () {
     curl 'http://musicazoo.mit.edu/nlp' -H 'Content-Type: text/json' --data-binary "[{\"cmd\":\"do\",\"args\":{\"message\":\"$1\"}}]";
     echo
+}
+
+pathadd() {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
+}
+
+ldlibrarypathadd() {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$LD_LIBARY_PATH:" != *":$ARG:"* ]]; then
+        LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+"$LD_LIBRARY_PATH:"}$ARG"
+    fi
+  done
+}
+
+# Fast cd alternative, switches to directory based on a map from
+# shortcuts to corresponding paths. To save your own shortcut, type
+#
+#   $ fd -s[f] [path] [shortcut]
+#
+# If you have the "f" option, the shortcut will be defined as a relative
+# path instead of an absolute one. (This lets you define shortcuts like
+# ... = ../.. which can be convenient.)
+#
+# To navigate to the corresponding shortcut, type
+#
+#   $ fd [shortcut]
+#
+# The shortcuts are all saved in ~/.fd-config
+fd() {
+  if [ $# -eq 0 ]; then
+    cd
+  elif [ $# -eq 1 ]; then
+    # Navigating to a shortcut.
+    declare -A loc
+    # Read in all the shortcuts.
+    while read line; do
+      IFS=':' read -r -a key_value <<< $line
+      loc["${key_value[0]}"]=${key_value[1]}
+    done <~/.fd-config
+    if [ -z "${loc[${1}]}" ]; then
+      # If the provided shortcut doesn't exist...
+      echo "Shortcut doesn't exist. Type \"fd -s[f] [path] [shortcut]\" to save it."
+    else
+      # Otherwise navigate to the corresponding shortcut.
+      cd "${loc[${1}]}"
+    fi
+  elif [ $# -eq 3 -a $1 = "-s" ] || [ $1 = "-sf" ]; then
+    # Saving a new shortcut.
+    fd_config=~/.fd-config
+    if [ $1 = "-s" ]; then
+      file=$(readlink -f "${2}")
+    else
+      file=$2
+    fi
+    prev_key_line_num=$(grep -n "${3}:" $fd_config 2>/dev/null | cut -f1 -d: | head -n1)
+    if [ -z $prev_key_line_num ]; then
+      # If this is a new shortcut...
+      echo "${3}:${file}" >> $fd_config;
+    else
+      # Otherwise, overwrite the previous shortcut.
+      # Putting in escape characters.
+      file=${file//\//\\/}     # Replace "/" with "\/"
+      file=${file//\ /\\ }     # Replace " " with "\ "
+      file=${file//\(/\\\(}    # Replace "(" with "\("
+      file=${file//\)/\\\)}    # Replace ")" with "\)"
+      # Overwriting actual line.
+      sed -i "${prev_key_line_num}s/.*/${3}:${file}/" ${fd_config}
+    fi
+  else
+    echo "Invalid parameters. Type \"fd [shortcut]\" to navigate to a shortcut, or \"fd -s[f] [path] [shortcut]\" to save a new one."
+  fi
 }
 
 # Credit for functions below: 
