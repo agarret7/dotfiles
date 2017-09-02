@@ -52,6 +52,9 @@ echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sourc
 # Chrome
 wget -q -0 - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 
+# Vundle
+git clone https://github.com/vundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 apt-get update && apt-get upgrade
 apt-get install $packages
 
