@@ -2,14 +2,15 @@
 *
 
 # Whitelist dotfiles
+!.bash_aliases
+!.bashrc
 !.config/
 !.config/compton.conf
+!.fd-config
+!.functions
+!.gitignore
 !.i3/
 !.i3/config
 !.i3/i3blocks.conf
-!.bash_aliases
-!.bashrc
-!.functions
-!.gitignore
+!.setup.sh
 !.vimrc
-!.fd-config
