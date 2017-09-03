@@ -35,6 +35,7 @@ packages="apt-utils            "` # self-explanatory
         `"texlive-full         "` # latex language (typesetting)
         `"texmaker             "` # latex IDE
         `"vim                  "` # terminal text editor
+        `"vlc                  "` # video player
         `"unzip                "  # zip extraction
 
 python_lib="h5py               "` # binary data interchange format
