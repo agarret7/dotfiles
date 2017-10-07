@@ -115,8 +115,13 @@ fi
 
 # Environment Variables
 
+# OTHER
+export JAVA_HOME=/opt/jdk/jdk1.8.0_121/
+export CUDA_PATH=/usr/local/cuda/
+export CPLUS_INCLUDE_PATH=/usr/local/cuda/include
+
 # PATH
-java_loc=/opt/jdk/jdk1.8.0_121/bin 
+java_loc=$JAVA_HOME/bin 
 cabal_loc=$HOME/.cabal/bin
 cuda_loc=/usr/local/cuda/bin
 pathadd $java_loc $cabal_loc $cuda_loc
@@ -126,7 +131,3 @@ cuda_lib=/usr/local/cuda/lib64
 local_lib=/usr/local/lib
 ldlibrarypathadd $cuda_lib $local_lib
 
-# OTHER
-export JAVA_HOME=/opt/jdk/jdk1.8.0_121/
-export CUDA_PATH=/usr/local/cuda/
-export CPLUS_INCLUDE_PATH=/usr/local/cuda/include

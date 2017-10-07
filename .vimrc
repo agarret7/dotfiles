@@ -11,12 +11,13 @@ call vundle#begin()
 
     """ plugins """
 
-    Plugin 'scrooloose/nerdtree'
+    Plugin 'Raimondi/delimitMate'
+    Plugin 'Valloric/YouCompleteMe'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'easymotion/vim-easymotion'
+    Plugin 'godlygeek/tabular'
+    Plugin 'scrooloose/nerdtree'
     Plugin 'vim-syntastic/syntastic'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'Raimondi/delimitMate'
 
 call vundle#end()
 filetype plugin indent on
@@ -55,7 +56,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " show existing tab with 4 spaces width
 set softtabstop=4
-" when indenting with '>', use 4 spcaes width
+" when indenting with '>', use 4 spaces width
 set shiftwidth=4
 " on pressing tab, insert 4 spaces
 set expandtab
@@ -127,7 +128,10 @@ function Py3()
   let g:syntastic_python_python_exec = '/usr/local/bin/python3.6'
 endfunction
 
-call Py3()   " default to Py3 because I try to use it when possible
+" Default to Python 3
+call Py3() 
 
-" execute python program
-nmap <F5> :w <bar> :!python3.5 %<cr>
+" Recognize Idris
+if &ft=='idr'
+  :set ft=idris
+endif

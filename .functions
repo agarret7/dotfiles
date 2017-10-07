@@ -5,6 +5,8 @@ mz () {
     echo
 }
 
+md () { mkdir -p "$@" && cd "$1"; }
+
 pathadd() {
   for ARG in "$@"
   do
@@ -21,6 +23,10 @@ ldlibrarypathadd() {
         LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+"$LD_LIBRARY_PATH:"}$ARG"
     fi
   done
+}
+
+rdir() {
+  cd ${1} && mv * .. && cd .. && rmdir ${1}
 }
 
 # Fast cd alternative, switches to directory based on a map from
