@@ -5,6 +5,8 @@ mz () {
     echo
 }
 
+crop () { convert -trim "$1" "$1"; }
+
 md () { mkdir -p "$@" && cd "$1"; }
 
 pathadd() {

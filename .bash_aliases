@@ -27,3 +27,18 @@ alias push-www='python3.5 ~/programming/web/austingarrett/backend/generate && rs
 alias tex-clean='rm *.aux && rm *.log && rm *.out'
 alias git-hpull='git fetch --all && git reset --hard origin/master'
 alias rm-swp='rm .*.sw*'
+
+# fasd commands
+alias a='fasd -a'              # any
+alias s='fasd -si'             # show / search / select
+alias d='fasd -d'              # directory
+alias f='fasd -f'              # file
+alias sd='fasd -sid'           # interactive directory selection
+alias sf='fasd -sif'           # interactive file selection
+alias z='fasd_cd -d'           # cd, same functionality as j in autojump
+alias zz='fasd_cd -d -i'       # cd with interactive selection
+alias v='f -e vim'             # quick opening files with vim
+alias m='f -e vlc'             # quick opening files with mplayer
+e () { f $1 .pdf -e evince; }  # quick opening files with xdg-open
+alias c='fasd_cd -d'           # c now does what z did (navigation).
+alias f_add='find -type f -exec touch {} +' # Recursively touch a directory.

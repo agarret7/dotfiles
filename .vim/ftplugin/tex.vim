@@ -19,4 +19,5 @@ endif
 let g:syntastic_quiet_messages = { 
   \ "!level": 'errors',
   \ "regex": ["possible unwanted space", "perhaps you should insert a", "missing",
-  \ "Do not use @ in LaTeX macro names"] }
+  \ "Do not use @ in LaTeX macro names", "Dots should be", "punctuation mark",
+  \ "Don't use", "to begin quotation", "Whitespace before punctation mark"] }

@@ -131,3 +131,5 @@ cuda_lib=/usr/local/cuda/lib64
 local_lib=/usr/local/lib
 ldlibrarypathadd $cuda_lib $local_lib
 
+# Start up fasd
+eval "$(fasd --init auto)"
