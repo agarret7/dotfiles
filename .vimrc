@@ -103,6 +103,9 @@ let g:ctrlp_cmd = 'CtrlP'
 " clears highlights on esc.
 map // :noh<return><esc>
 
+" Split line here. (Inverse of S-J).
+map <c-j> <Esc>i<Enter><Esc>
+
 let g:syntastic_cpp_compiler = "g++"
 " let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
 let g:syntastic_cpp_check_header = 1
