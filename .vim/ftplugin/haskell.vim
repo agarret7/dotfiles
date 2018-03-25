@@ -1,5 +1,9 @@
 " execute pdflatex program
-nmap <F5> :w <bar> :!ghci %<cr>
+nmap <F5> :w <bar> :make <cr>
+nmap <F6> :w <bar> :!ghci % <cr> 
+
+setl makeprg=ghc\ --make\ %
+setl errorformat=%E%f:%l:%c:,%C\ %.%m,%Z,%f:%l:%c:%m
 
 " show existing tab with 4 spaces width
 set softtabstop=4

@@ -1,28 +1,79 @@
-set nocompatible 
+" breaking compatibility with vi, oh no!
+set nocompatible
+
+" necessary for Vundle
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
     " let Vundle manage Vundle, required
     Plugin 'VundleVim/Vundle.vim'
 
     """ plugins """
 
-    Plugin 'Raimondi/delimitMate'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'ctrlpvim/ctrlp.vim'
-    Plugin 'easymotion/vim-easymotion'
-    Plugin 'godlygeek/tabular'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'vim-syntastic/syntastic'
+    Plugin 'MarcWeber/vim-addon-mw-utils'   " dependency for vim-snipmate
+    Plugin 'Raimondi/delimitMate'           " automatic closing of quotes, parens, etc.
+    Plugin 'Vimjas/vim-python-pep8-indent'  " fancy python indenting
+    Plugin 'ctrlpvim/ctrlp.vim'             " fuzzy finder
+    Plugin 'easymotion/vim-easymotion'      " quick motion around vim
+    Plugin 'garbas/vim-snipmate'            " automatically generate code snippets
+    Plugin 'godlygeek/tabular'              " easy column alignment
+    Plugin 'honza/vim-snippets'             " some code snippets for snipmate
+    Plugin 'let-def/vimbufsync'             " coquille dependency
+    Plugin 'neomake/neomake'                " automake features
+    Plugin 'scrooloose/nerdtree'            " file navigation
+    Plugin 'the-lambda-church/coquille'     " interactive coq in vim
+    Plugin 'tomtom/tlib_vim'                " dependency for vim-snipmate
+    Plugin 'vim-airline/vim-airline'        " fancy status bar
+    Plugin 'vim-airline/vim-airline-themes' " airline themes
+    Plugin 'vim-syntastic/syntastic'        " syntax checking
+    Plugin 'tpope/vim-fugitive'             " git integration in vim
+    Plugin 'lervag/vimtex'                  " tex integration with vim
+    " Plugin 'Valloric/YouCompleteMe'       " automatic tab completion (conflicts with snipmate)
 
 call vundle#end()
+
+" plugins finished, so lets add it back
+filetype on
+
+" styling
+
+" automatically save folds
+augroup QuickNotes
+  au BufWrite,VimLeave * mkview
+  au BufRead           * silent loadview
+augroup END
+
+" details for snippets
+let g:snips_author="Austin J. Garrett"
+let g:snips_email="agarret7@mit.edu"
+let g:snips_github="agarret7"
+
+" split divider
+hi VertSplit cterm=None
+set fillchars=vert:│
+
+" airline
+let g:airline_powerline_fonts=1
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+let g:airline#extensions#tabline#enabled=1
+let g:airline_skip_empty_sections=1
+let g:airline#extensions#ycm#error_symbol = 'E:'
+let g:airline#extensions#ycm#warning_symbol = 'W:'
+let g:airline_symbols = {}
+let g:airline_symbols.linenr=''
+let g:airline_symbols.maxlinenr=''
+let g:airline_symbols.whitespace=''
+
+
 filetype plugin indent on
 
 """ display options """
+
+" make ~ at end of buffer a little darker
+highlight EndOfBuffer ctermfg=black ctermbg=None
 
 " enable syntax highlighting
 syntax on
@@ -65,9 +116,10 @@ set expandtab
 set backspace=indent,eol,start
 
 " folding
-set foldmethod=syntax
-set foldcolumn=1
+set foldmethod=indent
+set foldcolumn=0
 set foldlevelstart=20
+highlight Folded cterm=bold,italic ctermbg=None
 
 let g:vim_markdown_folding_disabled=1 " Markdown
 let javaScript_fold=1                 " JavaScript
@@ -79,10 +131,17 @@ let sh_fold_enabled=1                 " sh
 let vimsyn_folding='af'               " Vim script
 let xml_syntax_folding=1              " XML
 
+" start nerdtree
+map <C-n> :NERDTreeToggle<CR>
+
 " opens nerdtree if no files are specified, or if a dir is specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" easier tab navigation
+nnoremap <Right> :tabn<CR>
+nnoremap <Left> :tabp<CR>
 
 " close vim if only nerdtree is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -93,9 +152,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" starts nerdtree 
-map <C-n> :NERDTreeToggle<CR>
-
 " starts ctrlp
 let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -104,7 +160,7 @@ let g:ctrlp_cmd = 'CtrlP'
 map // :noh<return><esc>
 
 " Split line here. (Inverse of S-J).
-map <c-j> <Esc>i<Enter><Esc>
+map <S-K> <Esc>i<Enter><Esc>
 
 let g:syntastic_cpp_compiler = "g++"
 " let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
@@ -132,7 +188,7 @@ function Py3()
 endfunction
 
 " Default to Python 3
-call Py3() 
+call Py3()
 
 " Recognize Idris
 if &ft=='idr'

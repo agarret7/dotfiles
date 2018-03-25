@@ -115,6 +115,8 @@ fi
 
 # Environment Variables
 
+pathadd $HOME/programming/scripts
+
 # OTHER
 export JAVA_HOME=/opt/jdk/jdk1.8.0_121/
 export CUDA_PATH=/usr/local/cuda/
@@ -133,3 +135,15 @@ ldlibrarypathadd $cuda_lib $local_lib
 
 # Start up fasd
 eval "$(fasd --init auto)"
+
+# Fancy powerline
+# powerline-daemon -q
+# POWERLINE_BASH_CONTINUATION=1
+# POWERLINE_BASH_SELECT=1
+# source $HOME/.local/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
+
+export XDG_CONFIG_HOME=$HOME/.config
+export POWERLINE=$HOME/.local/lib/python3.5/site-packages/powerline
+if [ -f $POWERLINE/bindings/bash/powerline.sh ]; then
+    source $POWERLINE/bindings/bash/powerline.sh
+fi

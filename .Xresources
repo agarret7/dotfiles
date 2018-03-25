@@ -1,7 +1,10 @@
-URxvt.transparent: 		        true
-URxvt.shading: 			        25
-URxvt.scrollBar: 		        false
-URxvt.font:                             xft:Inconsolata:size=12
+URxvt.transparent:  true
+URxvt.shading: 	    25
+URxvt.scrollBar:    false
+! URxvt.font:         xft:Inconsolata\ for\ Powerline:pixelsize=16
+URxvt.font:         xft:Inconsolata\ for\ Powerline,xft:Ubuntu\ Mono\ derivative\ Powerline,Hack:pixelsize=16
+
+! ,xft:Terminus:pixelsize=16
 
 xft.dpi:     	    96
 xft.antialias: 	    true
@@ -80,3 +83,7 @@ URxvt.color13:                 S_violet
 URxvt.color14:                 S_base1
 URxvt.color15:                 S_base3
 
+! Copy paste things.
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard

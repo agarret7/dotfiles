@@ -20,13 +20,15 @@ alias pip='pip3.5'
 
 # Misc
 alias ls='ls --color=auto'
-alias test='ping google.com'
-alias sc='vim ~/Dropbox\ \(MIT\)/scratch'
+alias sc='vim ~/.sc'
 alias rb='exec bash'
 alias push-www='python3.5 ~/programming/web/austingarrett/backend/generate && rsync --checksum -r ~/programming/web/austingarrett/* agarret7@athena.dialup.mit.edu:~/web_scripts/personal/'
 alias tex-clean='rm *.aux *.log *.out *.run.xml *.nav *.bcf *.snm *.toc'
 alias git-hpull='git fetch --all && git reset --hard origin/master'
 alias rm-swp='rm .*.sw*'
+alias lo='i3-msg exit'
+alias hibernate='lock -g && systemctl hibernate'
+alias sleep='lock -g && systemctl suspend'
 
 # fasd commands
 alias a='fasd -a'              # any
