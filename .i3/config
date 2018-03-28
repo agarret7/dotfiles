@@ -69,7 +69,7 @@ mode "$mode_gaps_outer" {
 
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different 
+# Font for window titles. Will also be used by the bar unless a different
 
 font pango: System San Francisco 12
 
@@ -105,7 +105,13 @@ bindsym $mod+d exec dmenu_run -b
 # h4rdc0r3 m0d3
 focus_follows_mouse yes
 
-# change focus
+# vim integration (disabled for now)
+# bindsym $mod+h exec --no-startup-id "i3-vim-nav h"
+# bindsym $mod+j exec --no-startup-id "i3-vim-nav j"
+# bindsym $mod+k exec --no-startup-id "i3-vim-nav k"
+# bindsym $mod+l exec --no-startup-id "i3-vim-nav l"
+
+# default
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -156,7 +162,7 @@ bindsym $mod+z focus child
 set $ws1 1: 
 set $ws2 2: 
 set $ws3 3: 
-set $ws4 4:   
+set $ws4 4: 
 set $ws5 5: 
 set $ws6 6: 
 set $ws7 7: 
@@ -281,3 +287,5 @@ bar {
 bindsym $mod+x exec lock -g
 # bindsym $mod+m exec --no-startup-id monitor
 bindsym $mod+m exec echo "hi"
+
+# Configuration with vim

@@ -5,6 +5,6 @@ set shiftwidth=2
 " on pressing tab, insert 4 spaces
 set expandtab
 
-let g:syntastic_quiet_messages = { 
+let g:syntastic_quiet_messages = {
   \ "!level": 'errors',
   \ "regex": ["cannot find symbol"] }

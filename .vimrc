@@ -30,12 +30,45 @@ call vundle#begin()
     Plugin 'vim-syntastic/syntastic'        " syntax checking
     Plugin 'tpope/vim-fugitive'             " git integration in vim
     Plugin 'lervag/vimtex'                  " tex integration with vim
+    " Plugin 'termhn/i3-vim-nav'            " seamless integration with i3 (disabled for now)
     " Plugin 'Valloric/YouCompleteMe'       " automatic tab completion (conflicts with snipmate)
 
 call vundle#end()
 
+call neomake#configure#automake('w')
+
+" i3 integration (disabled for now)
+" nnoremap <silent> <c-b><c-l> :call Focus('right', 'l')<CR>
+" nnoremap <silent> <c-b><c-h> :call Focus('left', 'h')<CR>
+" nnoremap <silent> <c-b><c-k> :call Focus('up', 'k')<CR>
+" nnoremap <silent> <c-b><c-j> :call Focus('down', 'j')<CR>
+
+" navigate splits more easily
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " plugins finished, so lets add it back
 filetype on
+
+" python linter
+let g:neomake_python_flake8_maker={
+    \ 'args': ['--ignore=',  '--format=default'],
+    \ 'errorformat':
+        \ '%E%f:%l: could not compile,%-Z%p^,' .
+        \ '%A%f:%l:%c: %t%n %m,' .
+        \ '%A%f:%l: %t%n %m,' .
+        \ '%-G%.%#',
+    \ }
+let g:neomake_python_enabled_makers=['pyflakes']
+
+    augroup my_neomake_signs
+        au!
+        autocmd ColorScheme *
+            \ hi NeomakeErrorSign ctermfg=white |
+            \ hi NeomakeWarningSign ctermfg=yellow
+    augroup END
 
 " styling
 
@@ -145,12 +178,6 @@ nnoremap <Left> :tabp<CR>
 
 " close vim if only nerdtree is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" navigate splits more easily
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " starts ctrlp
 let g:ctrlp_map = '<C-p>'
