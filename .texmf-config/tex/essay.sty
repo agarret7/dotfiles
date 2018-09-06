@@ -1,0 +1,61 @@
+%
+% LaTeX Essay Formatting and Macro Environment
+% Austin J. Garrett
+% 
+% Based on source by Josh Davis
+% https://github.com/jdavis/latex-homework-template
+%
+
+% temp
+\usepackage{amsmath}
+\usepackage{siunitx}
+
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{ifthen}
+\usepackage{indentfirst}
+\usepackage{lastpage}
+\usepackage{setspace}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+\headheight=15pt
+
+\pagestyle{fancy}
+\lhead{\AuthorName}
+\chead{\textit{\Title}}
+\rhead{\ClassShort}
+\cfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+%
+% Title Page
+%
+
+\title{
+ \vspace{2in}
+ \textmd{\textbf{\Title}}\\
+ \normalsize\vspace{0.1in}\small{\CompletionDate}\\
+ \vspace{0.1in}\large{\textit{\Class\ (\ClassTime)}}\\
+ \vspace{0.1in}\large{\textit{\ClassInstructor}}
+ \vspace{3in}
+}
+\author{\textbf{\AuthorName}}
+\date{}
+
+% Todo Macro
+\newcommand{\todo}[1][] {
+  \color{blue}\textsc{TODO}: \color{black}
+  \ifthenelse{\equal{#1}{}}{replace me}{#1}%
+}
