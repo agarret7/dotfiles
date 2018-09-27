@@ -59,7 +59,7 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u:\W\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W \[\e[00;31m\]λ\[\e[m\] '
 fi
 unset color_prompt force_color_prompt
 
@@ -126,7 +126,7 @@ export CPLUS_INCLUDE_PATH=/usr/local/cuda/include
 java_loc=$JAVA_HOME/bin 
 cabal_loc=$HOME/.cabal/bin
 cuda_loc=/usr/local/cuda/bin
-pathadd $java_loc $cabal_loc $cuda_loc
+pathadd $java_loc $cabal_loc /usr/local/cuda/bin $HOME/Programming/scripts/
 
 # LD_LIBRARY_PATH
 cuda_lib=/usr/local/cuda/lib64
@@ -143,7 +143,7 @@ eval "$(fasd --init auto)"
 # source $HOME/.local/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
 
 export XDG_CONFIG_HOME=$HOME/.config
-export POWERLINE=$HOME/.local/lib/python3.5/site-packages/powerline
+export POWERLINE=$HOME/.local/lib/python3/site-packages/powerline
 if [ -f $POWERLINE/bindings/bash/powerline.sh ]; then
     source $POWERLINE/bindings/bash/powerline.sh
 fi
