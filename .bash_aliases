@@ -25,9 +25,8 @@ alias pip='pip3'
 
 # Misc
 alias ls='ls --color=auto'
-alias sc='vim ~/.sc'
+alias sc='vim ~/documents/.sc'
 alias rb='exec bash'
-alias push-www='python3.5 ~/Programming/web/austingarrett/backend/generate && rsync --checksum -r ~/Programming/web/austingarrett/* agarret7@athena.dialup.mit.edu:~/web_scripts/personal/'
 alias tex-clean='rm *.aux *.log *.out *.run.xml *.nav *.bcf *.snm *.toc'
 alias git-hpull='git fetch --all && git reset --hard origin/master'
 alias rm-swp='rm .*.sw*'
@@ -52,3 +51,7 @@ alias m='f -e vlc'             # quick opening files with mplayer
 e () { f $1 .pdf -e evince; }  # quick opening files with xdg-open
 alias c='fasd_cd -d'           # c now does what z did (navigation).
 alias f_add='find -type f -exec touch {} +' # Recursively touch a directory.
+
+# Keyboard layouts
+alias arst="setxkbmap us"
+alias asdf="setxkbmap us -variant colemak"

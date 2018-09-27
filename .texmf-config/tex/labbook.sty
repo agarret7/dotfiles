@@ -1,0 +1,153 @@
+%
+% LaTeX Labbook Formatting Environment
+% Austin J. Garrett
+% 
+% Based on source by Josh Davis
+% https://github.com/jdavis/latex-homework-template
+%
+
+% Packages
+\usepackage{advdate}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath,esint}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{circuitikz}
+\usepackage{dsfont}
+\usepackage{enumerate}
+\usepackage{extramarks}
+\usepackage{fancyhdr}
+\usepackage{gensymb}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{macros}
+\usepackage{pgfplots}
+\usepackage{lipsum}
+\usepackage{setspace}
+\usepackage{siunitx}
+\usepackage{stmaryrd}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{units}
+\usepackage{wrapfig}
+\usepackage{xcolor,colortbl}
+\usetikzlibrary{automata,positioning,shapes.geometric}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+% \if@twocolumn
+%   \setlength\parindent{1em}
+% \else
+%   \getlength\parindent{15\p@}
+% \fi
+
+\setlength\parindent{1em}
+
+%
+% Formatting
+%
+
+% General
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,      
+  urlcolor=cyan,
+}
+
+%
+% Title Page
+%
+
+\title{
+  \vspace{2in}
+  \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+  \normalsize\vspace{0.1in}\small{\hmwkCompletionDate}\\
+  \vspace{0.1in}\large{\textit{\hmwkClassRecitation\ - \hmwkClassTime}}
+  \vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}\\ \textit{Research Partner: \hmwkCollaborators}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential.
+%
+
+\newcounter{homeworkProblemCounter}
+
+\newenvironment{labday}[2]{
+  % \renewcommand{labDate}{#2}
+  % \twocolumn[
+  \begin{center}\section*{#1 (#2)}\end{center}
+  % ]
+  \addcontentsline{toc}{section}{#1 (#2)}
+  \enterProblemHeader{homeworkProblemCounter}
+}{
+  \exitProblemHeader{homeworkProblemCounter}
+  \pagebreak
+}
+
+\newcommand{\labsection}[1]{
+  \subsection*{#1}
+}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand{\labDate}{}
+
+\newcommand{\colbreak}{
+  \vfill\null
+  \columnbreak
+}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\sisetup{separate-uncertainty = true, per-mode = fraction}
