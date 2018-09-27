@@ -159,16 +159,16 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
-set $ws1 1: 
-set $ws2 2: 
-set $ws3 3: 
-set $ws4 4: 
-set $ws5 5: 
-set $ws6 6: 
-set $ws7 7: 
-set $ws8 8: 
-set $ws9 9: 
-set $ws10 10: ♫
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -233,7 +233,7 @@ set $psst --no-startup-id
 set $update && killall -SIGUSR1 i3status
 
 # Background
-exec_always feh --bg-scale /home/agarret7/Dropbox\ \(MIT\)/media/background/40.jpg
+exec_always feh --bg-scale $HOME/Pictures/background/polygons.jpg
 # exec_always --no-startup-id compton -f --config ~/.config/compton.conf
 for_window [class="^.*"] border pixel 1
 
@@ -241,10 +241,10 @@ for_window [class="^.*"] border pixel 1
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
-# Audio keys
-bindsym XF86AudioRaiseVolume exec $psst amixer -D pulse sset Master 5%+ $update
-bindsym XF86AudioLowerVolume exec $psst amixer -D pulse sset Master 5%- $update
-bindsym XF86AudioMute exec $psst amixer -D pulse sset Master toggle $update
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 ## Screenshotting
 # take a screenshot of a screen region and copy it to a clipboard

@@ -100,7 +100,6 @@ let g:airline_symbols.linenr=''
 let g:airline_symbols.maxlinenr=''
 let g:airline_symbols.whitespace=''
 
-
 filetype plugin indent on
 
 """ display options """

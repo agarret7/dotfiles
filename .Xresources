@@ -86,4 +86,4 @@ URxvt.color15:                 S_base3
 ! Copy paste things.
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
-URxvt.perl-ext-common: default,clipboard
+URxvt.perl-ext-common: selection-to-clipboard

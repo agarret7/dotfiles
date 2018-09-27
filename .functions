@@ -127,3 +127,33 @@ extract() {
      echo "'$1' is not a valid file to extract"
   fi
 }
+
+mv-home() {
+  if [ $# -eq 1 ]; then
+    rsync -av $1 austin@24.255.47.127:$HOME/Downloads
+  elif [ $# -eq 2 ]; then
+    rsync -av $1 austin@24.255.47.127:$2
+  else
+    echo "mv-home: must enter either source or source and destination"
+  fi
+}
+
+pull-home() {
+  if [ $# -eq 1 ]; then
+    rsync -av austin@24.255.47.127:$1 $HOME/Downloads
+  elif [ $# -eq 2 ]; then
+    rsync -av austin@24.255.47.127:$1 $2
+  else
+    echo "pull-home: must enter either source or source and destination"
+  fi
+}
+
+wifi-connect() {
+  if [ $# -eq 1 ]; then
+    nmcli device wifi connect $1
+  elif [ $# -eq 2 ]; then
+    nmcli device wifi connect $1 password $2
+  else
+    echo "usage: wifi-connect [SSID-Name] [Password]"
+  fi
+}
