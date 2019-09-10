@@ -106,10 +106,10 @@ bindsym $mod+d exec dmenu_run -b
 focus_follows_mouse yes
 
 # vim integration (disabled for now)
-# bindsym $mod+h exec --no-startup-id "i3-vim-nav h"
-# bindsym $mod+j exec --no-startup-id "i3-vim-nav j"
-# bindsym $mod+k exec --no-startup-id "i3-vim-nav k"
-# bindsym $mod+l exec --no-startup-id "i3-vim-nav l"
+# bindsym $mod+h exec "i3-vim-nav left"
+# bindsym $mod+j exec "i3-vim-nav down"
+# bindsym $mod+k exec "i3-vim-nav up"
+# bindsym $mod+l exec "i3-vim-nav right"
 
 # default
 bindsym $mod+h focus left
@@ -285,7 +285,4 @@ bar {
 # Custom commands
 
 bindsym $mod+x exec lock -g
-# bindsym $mod+m exec --no-startup-id monitor
-bindsym $mod+m exec echo "hi"
-
-# Configuration with vim
+bindsym $mod+m exec --no-startup-id monitor

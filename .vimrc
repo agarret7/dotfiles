@@ -29,11 +29,18 @@ call vundle#begin()
     Plugin 'vim-airline/vim-airline-themes' " airline themes
     Plugin 'vim-syntastic/syntastic'        " syntax checking
     Plugin 'tpope/vim-fugitive'             " git integration in vim
-    Plugin 'lervag/vimtex'                  " tex integration with vim
+    Plugin 'JuliaEditorSupport/julia-vim'   " Julia support
+    " Plugin 'lervag/vimtex'                " tex integration with vim
     " Plugin 'termhn/i3-vim-nav'            " seamless integration with i3 (disabled for now)
     " Plugin 'Valloric/YouCompleteMe'       " automatic tab completion (conflicts with snipmate)
 
 call vundle#end()
+
+" F5 to --
+augroup LatexSuite
+  au LatexSuite User LatexSuiteFileType
+   \ imap <silent> <buffer> -- <Plug>Tex_FastEnvironmentInsert
+augroup END
 
 call neomake#configure#automake('w')
 
@@ -220,3 +227,6 @@ call Py3()
 if &ft=='idr'
   :set ft=idris
 endif
+
+" Remove trailing whitespace
+" ":nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>

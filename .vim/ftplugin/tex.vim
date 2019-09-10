@@ -9,6 +9,12 @@ set shiftwidth=2
 " on pressing tab, insert 2 spaces
 set expandtab
 
+" stop weird indentation (doesn't work)
+" set nosmartindent
+
+" autoclose dollar signs (doesn't work)
+au FileType tex let b:delimitMate_quotes = "\" ' $"
+
 let mapleader=','
 if exists(":Tabularize")
   nmap <Leader>a&  : Tabularize /&<CR>
