@@ -122,17 +122,17 @@ export JAVA_HOME=/opt/jdk/jdk1.8.0_121/
 export CUDA_PATH=/usr/local/cuda/
 export CPLUS_INCLUDE_PATH=/usr/local/cuda/include
 
-# PATH
-matlab_loc=/usr/local/MATLAB/R2018b/bin
-java_loc=$JAVA_HOME/bin 
-cabal_loc=$HOME/.cabal/bin
-cuda_loc=/usr/local/cuda/bin
-pathadd $matlab_loc $java_loc $cabal_loc /usr/local/cuda/bin $HOME/Programming/scripts/
+# PATH (matlab, java, cabal, cuda, miniconda, scripts)
+pathadd /usr/local/MATLAB/R2018b/bin \
+        $JAVA_HOME/bin \
+        $HOME/.cabal/bin \
+        /usr/local/cuda/bin \
+        ~/.miniconda3/bin \
+        ~/Programming/scripts
 
-# LD_LIBRARY_PATH
-cuda_lib=/usr/local/cuda/lib64
-local_lib=/usr/local/lib
-ldlibrarypathadd $cuda_lib $local_lib
+# LD_LIBRARY_PATH (cuda, local)
+ldlibrarypathadd /usr/local/cuda/lib64 \
+                 /usr/local/lib
 
 # Start up fasd
 eval "$(fasd --init auto)"
