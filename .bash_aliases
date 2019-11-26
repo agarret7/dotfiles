@@ -8,13 +8,17 @@ alias sshfs-fas-u='fusermount -u ~/Programming/research/darkMatterSims/snapshots
 alias sshfs-fas='sshfs agarrett@login.rc.fas.harvard.edu:/n/mvogelsfs01/agarrett/ ~/Programming/research/darkMatterSims/snapshots/mnt/'
 alias sshfs-fasme='sshfs agarrett@login.rc.fas.harvard.edu:/n/home02/agarrett/ ~/Programming/research/darkMatterSims/snapshots/mnt/'
 alias sshfs-om='sshfs agarret7@openmind7.mit.edu:/om2/user/agarret7/ ~/Programming/research/mnt/'
-alias sshfs-pcg='sshfs -p 49689 agarret7@probcomp-gpu-1.mit.edu:/home/agarret7/ /home/austin/Programming/research/mnt/'
+alias sshfs-pcg='sshfs pcg:/home/agarret7/src /home/austin/src/mnt'
+alias sshfs-home='sshfs home:/home/austin/src /home/austin/src/mnt'
 alias sshfs-u='sudo umount -l ~/Programming/research/mnt/'
 alias ssh-isee='ssh austin@10.0.0.101'
 # alias home='ssh -X austin@10.238.0.13'
 alias home='ssh -X austin@18.110.155.67'
 alias pass='date +%s | sha256sum | base64 | head -c 32 ; echo'
 alias ovpn-start='sudo openvpn $HOME/Programming/scripts/isee.ovpn'
+alias home-up='ssh -fNTM home'
+alias home-status='ssh -TO check home'
+alias home-down='ssh -TO exit home'
 
 # Program Shortcuts
 alias loot='python3 ~/Programming/python/loot/loot.py'
