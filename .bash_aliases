@@ -21,12 +21,13 @@ alias home-status='ssh -TO check home'
 alias home-down='ssh -TO exit home'
 
 # Program Shortcuts
+alias python="python3"
 alias loot='python3 ~/Programming/python/loot/loot.py'
 alias eclipse='~/Programming/lib/eclipse/eclipse'
 alias zb='sh ~/Programming/lib/ZeroBraneStudio/zbstudio.sh/'
-alias python='python3.7'
-alias pip='pip3'
-alias jp='julia --project'
+# alias python='python3.8'
+# alias pip='pip3'
+alias jl='JULIA_NUM_THREADS=10 julia --project'
 
 # Misc
 alias ls='ls --color=auto'
@@ -34,15 +35,23 @@ alias sc='vim ~/Documents/.sc'
 alias rb='exec bash'
 alias tex-clean='rm *.aux *.log *.out *.run.xml *.nav *.bcf *.snm *.toc 2>/dev/null'
 alias git-hpull='git fetch --all && git reset --hard origin/master'
+alias git-rem='git config --global credential.helper "cache --timeout=15552000"'
 alias rm-swp='rm .*.sw*'
 alias lo='i3-msg exit'
 alias hibernate='lock -g && systemctl hibernate'
-alias sleep='lock -g && systemctl suspend'
+# alias sleep='lock -g && systemctl suspend'
 alias l='ls'  # Yes, I'm that lazy
 alias wifi-ls='nmcli device wifi rescan; nmcli device wifi list'
 alias al='vim ~/.bash_aliases'
 alias fix-i3='sudo service network-manager restart && pkill nm-applet && pkill blueman-applet && nm-applet && blueman-applet &'
 alias kill-bar='pkill nm-applet & pkill blueman-applet'
+alias release='lsb_release -r && echo "Kernel:         $(uname -r)"'
+alias mkvid='ffmpeg -start_number 0 -i %d.png -vcodec mpeg4 $1'
+alias cora='sudo $HOME/src/GenSceneGraphs.jl/scripts/staging/run_docker.sh'
+alias settings='sudo env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
+alias xa='xrandr --auto'
+alias mvl='i3-msg move workspace to output left'
+alias mvr='i3-msg move workspace to output right'
 
 # fasd commands
 alias a='fasd -a'              # any
@@ -66,3 +75,4 @@ alias asdf="setxkbmap us -variant colemak"
 # Games
 alias minecraft='~/Games/minecraft/minecraft-launcher &'
 alias cata='~/Games/cataclysmdda-0.D/cataclysm-launcher &'
+alias sun='wine "C:\Westwood\SUN\game.exe"'

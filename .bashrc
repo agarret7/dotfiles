@@ -113,22 +113,20 @@ if [ -n "$DISPLAY" ]; then
   xset b off
 fi
 
-# Environment Variables
-
-pathadd $HOME/programming/scripts
-
 # OTHER
 export JAVA_HOME=/opt/jdk/jdk1.8.0_121/
 export CUDA_PATH=/usr/local/cuda/
 export CPLUS_INCLUDE_PATH=/usr/local/cuda/include
 
-# PATH (matlab, java, cabal, cuda, miniconda, scripts)
+# PATH (matlab, java, cabal, cuda, miniconda, scripts, julia)
 pathadd /usr/local/MATLAB/R2018b/bin \
         $JAVA_HOME/bin \
         $HOME/.cabal/bin \
         /usr/local/cuda/bin \
         ~/.miniconda3/bin \
-        ~/Programming/scripts
+        ~/src/scripts \
+        /opt/julia/julia-1.3.0/bin \
+        /home/austin/src/Derendering/scripts
 
 # LD_LIBRARY_PATH (cuda, local)
 ldlibrarypathadd /usr/local/cuda/lib64 \
@@ -147,4 +145,23 @@ export XDG_CONFIG_HOME=$HOME/.config
 export POWERLINE=$HOME/.local/lib/python3/site-packages/powerline
 if [ -f $POWERLINE/bindings/bash/powerline.sh ]; then
     source $POWERLINE/bindings/bash/powerline.sh
+fi
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# CRONTAB
+if test -z $CRONTABCMD; then
+    # allows to source zshrc twice
+    export CRONTABCMD=$(which crontab)
+    crontab()
+    {
+        if [[ $@ == "-e" ]]; then
+            vim ~/.crontab && $CRONTABCMD ~/.crontab
+        else
+            $CRONTABCMD $@
+        fi
+    }
+    $CRONTABCMD ~/.crontab
 fi

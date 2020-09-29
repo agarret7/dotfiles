@@ -30,6 +30,9 @@ call vundle#begin()
     Plugin 'vim-syntastic/syntastic'        " syntax checking
     Plugin 'tpope/vim-fugitive'             " git integration in vim
     Plugin 'JuliaEditorSupport/julia-vim'   " Julia support
+    Plugin 'pangloss/vim-javascript'        " JavaScript support
+    Plugin 'tpope/vim-surround.git'         " surround anything easily
+    Plugin 'vimwiki/vimwiki'                " documentation/notes support
     " Plugin 'lervag/vimtex'                " tex integration with vim
     " Plugin 'termhn/i3-vim-nav'            " seamless integration with i3 (disabled for now)
     " Plugin 'Valloric/YouCompleteMe'       " automatic tab completion (conflicts with snipmate)
@@ -175,8 +178,8 @@ map <C-n> :NERDTreeToggle<CR>
 
 " opens nerdtree if no files are specified, or if a dir is specified
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | execute 'VimwikiIndex'| endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe '\ww' argv()[0] | wincmd p | ene | endif
 
 " easier tab navigation
 nnoremap <Right> :tabn<CR>
@@ -230,3 +233,17 @@ endif
 
 " Remove trailing whitespace
 " ":nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" Vimwiki
+let g:vimwiki_list = [{
+  \ 'automatic_nested_syntaxes':1,
+  \ 'path': '$HOME/Dropbox (MIT)/wiki',
+  \ 'syntax': 'markdown',
+  \ 'ext':'.md',
+  \ 'template_default':'markdown',
+  \ 'template_ext':'.html'
+\}]
+" let g:vimwiki_ext = '.md' " set extension to .md
+let g:vimwiki_global_ext = 0 " make sure vimwiki doesn't own all .md files
+let g:vimwiki_autowriteall = 1
+

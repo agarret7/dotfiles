@@ -31,6 +31,14 @@ rdir() {
   cd ${1} && mv * .. && cd .. && rmdir ${1}
 }
 
+slowvid() {
+  ffmpeg -i ${1} -filter:v "setpts=30*PTS" ${2}
+}
+
+clipvid() {
+  ffmpeg -ss $(echo "${2}/30" | bc -l | awk '{printf "%.4f\n", $0}') -i ${1} -c:v libx264 -c:a aac -frames:v $((${3} - ${2})) ${4}
+}
+
 # Fast cd alternative, switches to directory based on a map from
 # shortcuts to corresponding paths. To save your own shortcut, type
 #

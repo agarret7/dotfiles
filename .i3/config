@@ -238,20 +238,16 @@ exec_always feh --bg-scale $HOME/Pictures/background/polygons.jpg
 for_window [class="^.*"] border pixel 1
 
 # Screen brightness keys
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-## Screenshotting
-# take a screenshot of a screen region and copy it to a clipboard
-bindsym --release Shift+Print exec "scregcp -s /home/agarret7/pictures/screenshots/"
-
-# take a screenshot of a whole window and copy it to a clipboard
-bindsym --release Print exec "scregcp /home/agarret7/pictures/screenshots/"
+## Screenshotting - take a screenshot of a whole window and copy it to a clipboard
+bindsym --release $mod+z exec "scrot"
 
 # Colors
 set $bg-color            #2f343f
