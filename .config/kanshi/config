@@ -1,0 +1,9 @@
+profile docked {
+	output eDP-1 disable
+	output "Dell Inc. DELL U2417H XVNNT83S726W" mode 1920x1080 position 0,0
+	output "Dell Inc. DELL U2417H XVNNT83S709W" mode 1920x1080 position 1920,0
+}
+
+profile fallback {
+        output eDP-1 enable
+}
