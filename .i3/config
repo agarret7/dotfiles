@@ -12,6 +12,9 @@
 # terminal
 exec xrdb ~/.Xresources
 
+# automatic display configuration
+exec_always pkill kanshi; exec kanshi
+
 # ### i3-gaps stuff ###
 
 # Necessary for i3-gaps to work properly (pixel can be any value)
@@ -22,10 +25,6 @@ smart_gaps on
 
 # Smart Borders
 smart_borders on
-
-# Some color adjustments
-client.focused_inactive #000000 #000000 #000000 #000000 #000000
-client.unfocused        #000000 #000000 #000000 #000000 #000000
 
 # Set inner/outer gaps
 gaps inner 12
@@ -237,7 +236,7 @@ set $psst --no-startup-id
 set $update && killall -SIGUSR1 i3status
 
 # Background
-exec_always feh --bg-scale $HOME/Pictures/background/polygons.jpg
+exec_always swaybg -i $HOME/Pictures/background/buddha.jpg
 # exec_always --no-startup-id compton -f --config ~/.config/compton.conf
 for_window [class="^.*"] border pixel 1
 
@@ -253,32 +252,27 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 ## Screenshotting - take a screenshot of a whole window and copy it to a clipboard
 bindsym --release $mod+z exec "scrot"
 
-# Colors
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #675E7D
-set $urgent-bg-color     #E53935
+client.focused #000000 #000000 #000000 #000000
+client.focused_inactive #626262 #626262 #626262
+client.unfocused #626262 #626262 #626262 #626262
+client.urgent #dc322f #dc322f #dc322f #dc332f
+client.placeholder #626262 #626262 #626262 #626262
 
-# Window Colors
-#                       border             background         text                 indicator
-client.focused          $bg-color          $bg-color          $text-color          $bg-color
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $bg-color
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $bg-color
-client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          $bg-color
+client.background #fdf6e3
 
 # Bar
 bar {
     status_command i3blocks -c ~/.i3/i3blocks.conf
 	position top
 	colors {
-		background $bg-color
+		background #fdf6e3
 		separator #757575
+                statusline #626262
 
 		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+		focused_workspace  #626262            #626262            #000000
+		inactive_workspace #fdf6e3            #fdf6e3            #626262
+		urgent_workspace   #dc322f            #dc322f            #626262
 	}
 }
 

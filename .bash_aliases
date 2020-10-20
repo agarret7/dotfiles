@@ -21,7 +21,6 @@ alias home-status='ssh -TO check home'
 alias home-down='ssh -TO exit home'
 
 # Program Shortcuts
-alias python="python3"
 alias loot='python3 ~/Programming/python/loot/loot.py'
 alias eclipse='~/Programming/lib/eclipse/eclipse'
 alias zb='sh ~/Programming/lib/ZeroBraneStudio/zbstudio.sh/'
@@ -52,6 +51,8 @@ alias settings='gnome-control-center'
 alias xa='xrandr --auto'
 alias mvl='i3-msg move workspace to output left'
 alias mvr='i3-msg move workspace to output right'
+alias fix-audio-jack='pacmd set-default-sink 1'
+alias cap='grim -g "$(slurp)" ~/Pictures/screenshot.png'
 
 # fasd commands
 alias a='fasd -a'              # any
