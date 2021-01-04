@@ -26,7 +26,7 @@ alias eclipse='~/Programming/lib/eclipse/eclipse'
 alias zb='sh ~/Programming/lib/ZeroBraneStudio/zbstudio.sh/'
 # alias python='python3.8'
 # alias pip='pip3'
-alias jl='JULIA_NUM_THREADS=10 julia --project'
+alias jl='PYTHON=python3 JULIA_NUM_THREADS=10 julia --project'
 
 # Misc
 alias ls='ls --color=auto'
