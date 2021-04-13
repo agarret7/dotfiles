@@ -5,7 +5,7 @@ profile docked_old {
 }
 
 profile docked_new {
-	output "Dell Inc. DELL P2720DC 3D6FT03" enable mode 2560x1440 position 0,0
+	output "Dell Inc. DELL P2720DC DSFPK53" enable mode 2560x1440 position 0,0
 	output "Dell Inc. DELL U2718Q 4K8X7922250L" enable mode 2560x1440 position 2560,0
 	output eDP-1 disable
 }
