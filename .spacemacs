@@ -47,7 +47,8 @@ values."
      github
      markdown
      (org :variables
-          org-enable-org-journal-support 1)
+          org-enable-org-journal-support t
+          org-want-todo-bindings t)
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -59,6 +60,7 @@ values."
                         spacemacs-layouts-restrict-spc-tab t)
      gtags
      themes-megapack
+     docker
 
      ;; evil
      evil-commentary
@@ -74,6 +76,8 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
+   ;; This file is loaded by Spacemacs at startup.
+   ;; It must be stored in your home directory.
    dotspacemacs-additional-packages '(
      (forge :toggle t)
      (org-journal)
@@ -337,10 +341,22 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+    ;; colemak config
+    ;; Make evil-mode up/down operate in screen lines instead of logical lines
+    (define-key evil-motion-state-map "h" nil)
+    (define-key evil-motion-state-map "j" nil)
+    (define-key evil-motion-state-map "k" nil)
+    (define-key evil-motion-state-map "l" nil)
+    (define-key evil-motion-state-map "'" nil)
+
   ;; spacemacs settings
   (spacemacs/toggle-line-numbers-on)
 
   ;; org-mode
+  ;;; org-agenda
+  (setq org-agenda-files '("~/src/t590.bak/Dropbox/docs/orgfiles"
+                           "~/src/t590.bak/Dropbox/docs/orgfiles/notes"
+                           "~/src/t590.bak/Dropbox/docs/blog"))
   ;;; flat colors for readability
   (let ((color "#657b83"))
     (custom-theme-set-faces 'user
@@ -361,30 +377,30 @@ you should place your code here."
   (setq org-blank-before-new-entry nil)
 
   (defun agarrett/create-notes-file ()
-    "Create an org file in ~/Documents/notes"
+    "Create an org file in ~/src/t590.bak/Dropbox/docs/notes"
     (interactive)
     (let ((name (read-string "Filename: ")))
-      (expand-file-name (format "%s.org" name) "~/Documents/notes/")))
+      (expand-file-name (format "%s.org" name) "~/src/t590.bak/Dropbox/docs/notes/")))
 
   ;; org-capture
   (setq org-capture-templates
-        '(("a" "Appointment" entry (file  "~/Documents/orgfiles/gcal.org")
+        '(("a" "Appointment" entry (file  "~/src/t590.bak/Dropbox/docs/orgfiles/gcal.org")
            "* %?" :prepend t)
-          ;; ("n" "Note" entry (file+headline "~/Documents/orgfiles/notes.org" "Notes")
+          ;; ("n" "Note" entry (file+headline "~/src/t590.bak/Dropbox/docs/orgfiles/notes.org" "Notes")
           ;;  "* Note %?\n%T")
-          ;; ("l" "Link" entry (file+headline "~/Documents/orgfiles/reading.org" "Links")
+          ;; ("l" "Link" entry (file+headline "~/src/t590.bak/Dropbox/docs/orgfiles/reading.org" "Links")
           ;;  "* %? %^L %^g \n%T" :prepend t)
-          ;; ("b" "Blog idea" entry (file+headline "~/Documents/orgfiles/i.org" "Blog Topics:")
+          ;; ("b" "Blog idea" entry (file+headline "~/src/t590.bak/Dropbox/docs/orgfiles/i.org" "Blog Topics:")
           ;;  "* %?\n%T" :prepend t)
-          ("t" "Todo" entry (file "~/Documents/orgfiles/tasks.org")
+          ("t" "Todo" entry (file "~/src/t590.bak/Dropbox/docs/orgfiles/tasks.org")
            "* TODO %?\n  SCHEDULED: %^t\n  DEADLINE: %^t" :prepend t)
-          ("j" "Journal" entry (file+datetree "~/Documents/orgfiles/journal.org") "* %?")
+          ("j" "Journal" entry (file+datetree "~/src/t590.bak/Dropbox/docs/orgfiles/journal.org") "* %?")
           ("n" "Notes" entry (file agarrett/create-notes-file) "* %^{TITLE}\n  %U\n  %?")))
 
   ;; org-gcal
   (setq org-gcal-client-id "473287885079-l01tt2j55d0cqbbje321jru88sfu44s4.apps.googleusercontent.com"
         org-gcal-client-secret "DIM_ll5wgK9rPQXta3cF-7px"
-        org-gcal-file-alist '(("agarrett777@gmail.com" .  "~/Documents/orgfiles/gcal.org")))
+        org-gcal-file-alist '(("agarrett777@gmail.com" .  "~/src/t590.bak/Dropbox/docs/orgfiles/gcal.org")))
   ;;; nest repeated events
   (setq org-gcal-recurring-events-mode 'nested)
   ;;; sync on loading agenda
@@ -395,22 +411,26 @@ you should place your code here."
   ;; forge
   (setq auth-sources '("~/.authinfo.gpg"))
   (setq forge-topic-list-limit '(100 . 0))
-  )
+)
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
  '(highlight-parentheses-colors (quote ("#2aa198" "#b58900" "#268bd2" "#6c71c4" "#859900")))
  '(org-agenda-files
    (quote
-    ("~/Documents/orgfiles/journal.org" "~/Documents/orgfiles/gcal.org" "~/Documents/orgfiles/tasks.org")))
+    ("~/src/t590.bak/Dropbox/docs/orgfiles/notes/personal-cloud.org" "/home/austin/src/t590.bak/Dropbox/docs/orgfiles/gcal.org" "/home/austin/src/t590.bak/Dropbox/docs/orgfiles/journal.org" "/home/austin/src/t590.bak/Dropbox/docs/orgfiles/notes.org" "/home/austin/src/t590.bak/Dropbox/docs/orgfiles/tasks.org")))
  '(package-selected-packages
    (quote
-    (org-gcal persist request-deferred deferred org-journal web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data toml-mode racer flycheck-rust cargo rust-mode forge ghub closql emacsql-sqlite emacsql treepy magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht yaml-mode zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode ess-smart-equals ess-R-data-view ctable ess helm-gtags ggtags dtrt-indent yapfify xterm-color unfill smeargle shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup live-py-mode julia-repl julia-mode hy-mode dash-functional htmlize helm-pydoc helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-julia flycheck evil-magit magit git-commit with-editor transient evil-commentary eshell-z eshell-prompt-extras esh-help diff-hl cython-mode company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (dockerfile-mode docker tablist docker-tramp dap-mode bui org-gcal persist request-deferred deferred org-journal web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data toml-mode racer flycheck-rust cargo rust-mode forge ghub closql emacsql-sqlite emacsql treepy magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht yaml-mode zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode ess-smart-equals ess-R-data-view ctable ess helm-gtags ggtags dtrt-indent yapfify xterm-color unfill smeargle shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup live-py-mode julia-repl julia-mode hy-mode dash-functional htmlize helm-pydoc helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-julia flycheck evil-magit magit git-commit with-editor transient evil-commentary eshell-z eshell-prompt-extras esh-help diff-hl cython-mode company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((eval org-content 3) (eval org-content 2)))))
 (custom-set-faces
@@ -418,7 +438,7 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-level-1 ((t (:foreground "black"))))
+ '(org-level-1 ((t (:foreground "#657b83"))))
  '(org-level-2 ((t (:foreground "#657b83"))))
  '(org-level-3 ((t (:foreground "#657b83"))))
  '(org-level-4 ((t (:foreground "#657b83"))))
@@ -426,3 +446,4 @@ you should place your code here."
  '(org-level-6 ((t (:foreground "#657b83"))))
  '(org-level-7 ((t (:foreground "#657b83"))))
  '(org-level-8 ((t (:foreground "#657b83")))))
+)

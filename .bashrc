@@ -126,7 +126,7 @@ pathadd /usr/local/MATLAB/R2018b/bin \
         ~/.miniconda3/bin \
         ~/src/scripts \
         /opt/julia/julia-1.3.0/bin \
-        /home/austin/src/Derendering/scripts
+        /home/austin/src/scripts
 
 # LD_LIBRARY_PATH (cuda, local)
 ldlibrarypathadd /usr/local/cuda/lib64 \
