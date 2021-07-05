@@ -125,7 +125,6 @@ pathadd /usr/local/MATLAB/R2018b/bin \
         /usr/local/cuda/bin \
         ~/.miniconda3/bin \
         ~/src/scripts \
-        /opt/julia/julia-1.3.0/bin \
         /home/austin/src/scripts
 
 # LD_LIBRARY_PATH (cuda, local)
@@ -150,18 +149,3 @@ fi
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# CRONTAB
-if test -z $CRONTABCMD; then
-    # allows to source zshrc twice
-    export CRONTABCMD=$(which crontab)
-    crontab()
-    {
-        if [[ $@ == "-e" ]]; then
-            vim ~/.crontab && $CRONTABCMD ~/.crontab
-        else
-            $CRONTABCMD $@
-        fi
-    }
-    $CRONTABCMD ~/.crontab
-fi
