@@ -53,7 +53,7 @@ alias xa='xrandr --auto'
 alias mvl='i3-msg move workspace to output left'
 alias mvr='i3-msg move workspace to output right'
 alias fix-audio-jack='pacmd set-default-sink 1'
-alias cap='grim -g "$(slurp)" ~/Pictures/screenshot.png'
+alias cap='grim -g "$(slurp)" ~/pic/screenshot.png'
 
 # fasd commands
 alias a='fasd -a'              # any
