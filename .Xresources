@@ -3,7 +3,7 @@ urxvt.depth: 32
 
 URxvt.scrollBar:    false
 ! URxvt.font:         xft:Inconsolata\ for\ Powerline:pixelsize=16
-URxvt.font:         xft:Inconsolata\ for\ Powerline:pixelsize=18,xft:Ubuntu\ Mono\ derivative\ Powerline,Hack:pixelsize=18
+URxvt.font:         xft:Inconsolata for Powerline:pixelsize=18,xft:Ubuntu\ Mono\ derivative\ Powerline,Hack:pixelsize=18
 
 ! ,xft:Terminus:pixelsize=16
 

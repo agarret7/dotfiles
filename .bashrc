@@ -125,7 +125,8 @@ pathadd /usr/local/MATLAB/R2018b/bin \
         /usr/local/cuda/bin \
         ~/.miniconda3/bin \
         ~/src/scripts \
-        /home/austin/src/scripts
+        /home/austin/src/scripts \
+        /var/lib/snapd/snap/bin
 
 # LD_LIBRARY_PATH (cuda, local)
 ldlibrarypathadd /usr/local/cuda/lib64 \

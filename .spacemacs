@@ -341,13 +341,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-    ;; colemak config
-    ;; Make evil-mode up/down operate in screen lines instead of logical lines
-    (define-key evil-motion-state-map "h" nil)
-    (define-key evil-motion-state-map "j" nil)
-    (define-key evil-motion-state-map "k" nil)
-    (define-key evil-motion-state-map "l" nil)
-    (define-key evil-motion-state-map "'" nil)
+  ; fix eyebrowse keybinds
+  (define-key evil-normal-state-map "gt" 'eyebrowse-next-window-config)
+  (define-key evil-normal-state-map "gT" 'eyebrowse-prev-window-config)
 
   ;; spacemacs settings
   (spacemacs/toggle-line-numbers-on)

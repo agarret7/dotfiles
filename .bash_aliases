@@ -26,7 +26,7 @@ alias eclipse='~/Programming/lib/eclipse/eclipse'
 alias zb='sh ~/Programming/lib/ZeroBraneStudio/zbstudio.sh/'
 # alias python='python3.8'
 # alias pip='pip3'
-alias julia="/opt/julia/julia-1.6.0/bin/julia"
+alias julia="/bin/julia"
 alias jl='PYTHON=python3 JULIA_NUM_THREADS=10 julia --project'
 
 # Misc
@@ -54,6 +54,7 @@ alias mvl='i3-msg move workspace to output left'
 alias mvr='i3-msg move workspace to output right'
 alias fix-audio-jack='pacmd set-default-sink 1'
 alias cap='grim -g "$(slurp)" ~/pic/screenshot.png'
+alias ls='ls -Isnap'
 
 # fasd commands
 alias a='fasd -a'              # any
