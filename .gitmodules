@@ -1,0 +1,3 @@
+[submodule "src/GenSlam/deps/GenSceneGraphs.jl"]
+	path = src/GenSlam/deps/GenSceneGraphs.jl
+	url = git@github.com:probcomp/GenSceneGraphs.jl.git
