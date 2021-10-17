@@ -2,7 +2,7 @@ font:
   normal:
     family: 'Inconsolata for Powerline'
     style: regular
-  size: 9.0
+  size: 15.0
 colors:
   primary:
     background: '#fdf6e3'

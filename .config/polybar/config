@@ -22,9 +22,10 @@ secondary = #323232
 
 
 [bar/PolybarTony]
+dpi=0
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 30
+height = 50
 offset-x = 0%
 ;offset-y = 10%
 radius = 0.0

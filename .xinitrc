@@ -1,2 +1,0 @@
-sway
-xrdb ~/.Xresources

@@ -26,6 +26,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-TZ='US/Arizona'; export TZ
+TZ='US/Eastern'; export TZ
 synclient MaxTapTime=0
-GTAGSLABEL=pygments
+
+export GDK_SCALE=2  # change to 2 for 4K displays
+xrdb ~/.Xresources
+
+export GDK_SCALE=2
