@@ -26,15 +26,16 @@ alias eclipse='~/Programming/lib/eclipse/eclipse'
 alias zb='sh ~/Programming/lib/ZeroBraneStudio/zbstudio.sh/'
 # alias python='python3.8'
 # alias pip='pip3'
+alias pip='python -m pip'
 alias julia="/bin/julia"
 alias jl='PYTHON=python3 JULIA_NUM_THREADS=10 julia --project'
 
 # Misc
-alias ls='ls --color=auto'
+alias fe='~/src/scripts/fe_amd64'
 alias sc='vim ~/Documents/.sc'
 alias rb='exec bash'
 alias tex-clean='rm *.aux *.log *.out *.run.xml *.nav *.bcf *.snm *.toc 2>/dev/null'
-alias git-hpull='git fetch --all && git reset --hard origin/master'
+alias git-hpull='git fetch --all && git reset --hard origin/main'
 alias git-rem='git config --global credential.helper "cache --timeout=15552000"'
 alias rm-swp='rm .*.sw*'
 alias lo='i3-msg exit'
@@ -54,7 +55,9 @@ alias mvl='i3-msg move workspace to output left'
 alias mvr='i3-msg move workspace to output right'
 alias fix-audio-jack='pacmd set-default-sink 1'
 alias cap='grim -g "$(slurp)" ~/pic/screenshot.png'
-alias ls='ls -Isnap'
+alias ls='lsd -Isnap -IZomboid'
+alias vedit='${VISUAL}'
+alias edit='TERM=rxvt-unicode-256color ${EDITOR}'
 
 # fasd commands
 alias a='fasd -a'              # any

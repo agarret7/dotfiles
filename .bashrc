@@ -57,9 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+    PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W \[\e[00;31m\]λ\[\e[m\] '
+    PS1='\[\033[01;34m\]\W \[\e[00;31m\]⟩\[\e[m\] '
 fi
 unset color_prompt force_color_prompt
 
@@ -117,6 +117,12 @@ fi
 export JAVA_HOME=/opt/jdk/jdk1.8.0_121/
 export CUDA_PATH=/usr/local/cuda/
 export CPLUS_INCLUDE_PATH=/usr/local/cuda/include
+export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
+
+# EMACS
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -c"
 
 # PATH (matlab, java, cabal, cuda, miniconda, scripts, julia)
 pathadd /usr/local/MATLAB/R2018b/bin \
@@ -136,11 +142,6 @@ ldlibrarypathadd /usr/local/cuda/lib64 \
 eval "$(fasd --init auto)"
 
 # Fancy powerline
-# powerline-daemon -q
-# POWERLINE_BASH_CONTINUATION=1
-# POWERLINE_BASH_SELECT=1
-# source $HOME/.local/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
-
 export XDG_CONFIG_HOME=$HOME/.config
 export POWERLINE=$HOME/.local/lib/python3/site-packages/powerline
 if [ -f $POWERLINE/bindings/bash/powerline.sh ]; then
@@ -150,3 +151,18 @@ fi
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
