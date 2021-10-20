@@ -349,6 +349,15 @@ you should place your code here."
   (spacemacs/toggle-line-numbers-on)
 
   ;; org-mode
+  ;;; TODO sequence
+  (setq org-todo-keyword-faces
+        '(("TODO")
+          ("DOING" . "blue")
+          ("BLOCKED" . "red")
+          ("REVIEW" . "orange")
+          ("DONE")
+          ("ARCHIVED" . "purple")))
+
   ;;; org-agenda
   (setq org-agenda-files '("~/src/t590.bak/Dropbox/docs/orgfiles"
                            "~/src/t590.bak/Dropbox/docs/orgfiles/notes"
