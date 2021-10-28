@@ -350,13 +350,16 @@ you should place your code here."
 
   ;; org-mode
   ;;; TODO sequence
-  (setq org-todo-keyword-faces
-        '(("TODO")
-          ("DOING" . "blue")
-          ("BLOCKED" . "red")
-          ("REVIEW" . "orange")
-          ("DONE")
-          ("ARCHIVED" . "purple")))
+  (with-eval-after-load 'org
+    (setq org-todo-keywords
+          '((sequence "TODO" "DOING" "BLOCKED" "REVIEW" "|" "DONE" "ARCHIVED")))
+    (setq org-todo-keyword-faces
+          '(("TODO" . "SlateGray")
+            ("DOING" . "Blue")
+            ("BLOCKED" . "Red")
+            ("REVIEW" . "Orange")
+            ("DONE" . "ForestGreen")
+            ("ARCHIVED" . "purple"))))
 
   ;;; org-agenda
   (setq org-agenda-files '("~/src/t590.bak/Dropbox/docs/orgfiles"
